@@ -1,0 +1,2386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IPL Match Tickets</title>
+  <script src="right_click.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #9172e767;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 500px; /* ✅ limit card width on large screens */
+      margin: 0 auto;   /* ✅ center horizontally */
+     }
+    .card {
+      background: rgba(186, 238, 90, 0.527);
+      border: 2px solid #d32f2f;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      margin-bottom: 25px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background-color: #d32f2f;
+      color: white;
+      padding: 10px 15px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+    }
+
+    .match-info {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .teams {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .teams img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .location {
+      color: #555;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    .badges {
+      display: flex;
+      justify-content: space-around;
+      margin: 15px 0;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin: 5px;
+    }
+
+    .green {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .orange {
+      background-color: #fff3e0;
+      color: #ef6c00;
+    }
+
+    .book-btn {
+      background-color: #d32f2f;
+      color: white;
+      padding: 12px;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      width: 100%;
+      font-size: 15px;
+    }
+
+    .book-btn:hover {
+      background-color: #b71c1c;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .blinking {
+      animation: blink 1s infinite;
+    }
+
+
+      .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+      }
+    
+    .navbar {
+  background: #ffffff;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+  color: #d32f2f;
+}
+
+.logo span {
+  color: #000;
+}
+
+.menu {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* 🔹 Slider */
+.slider {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  height: auto;
+}
+
+.slide.active {
+  display: block;
+}
+
+/* 🔹 Responsive */
+@media (max-width: 600px) {
+  .logo {
+    font-size: 18px;
+  }
+
+  .menu {
+    font-size: 22px;
+  }
+
+  .slider {
+    margin-top: 5px;
+    border-radius: 0;
+  }
+}
+
+.match-intro {
+  text-align: center;
+  padding: 10px;
+  background-color: #ffffff;
+}
+
+.match-intro h3 {
+  font-size: 19px;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+}
+
+.match-intro h4 {
+  font-size: 16px;
+  margin: 15px 0 5px;
+  color: #d32f2f;
+}
+
+.match-intro p {
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0;
+}
+
+.match-intro p::before {
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.footer-image {
+  width: 100%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer-image img {
+  width: 100%;
+  height: auto;
+  
+  object-fit: cover;
+  border-top: 4px solid #d32f2f; /* optional border for design */
+}
+
+.call-now-fixed {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #28a745;
+  color: red;
+  padding: 14px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.call-now-fixed:hover {
+  background-color: #218838;
+  transform: scale(1.1);
+}
+
+
+  </style>
+</head>
+<body>
+
+ <header class="navbar">
+    <div class="logo">book <span>my </span>show</div> <br>
+  </header>
+
+<a href="tel:+918961633005" class="call-now-fixed">📞 </a>
+
+  <!-- 🔹 Slider Section -->
+  <div class="slider">
+    <div class="slides">
+      <img src="img/ipl1.png" alt="IPL Slide 1" class="slide active">
+      <img src="img/ipl2.jpg" alt="IPL Slide 2" class="slide">
+      <img src="img/ipl3.jpg" alt="IPL Slide 3" class="slide">
+      <img src="img/ipl4.webp" alt="IPL Slide 3" class="slide">
+    </div>
+  </div>
+<br>
+
+<!-- 🔻 Section under the slider -->
+<div class="match-intro">
+    <h3>INDIA - Indian Premier League 2025</h3>
+    <p> 📅 Sat 22 March 2025 Onwards </p>
+    <p> 📍 Multiple Venues </p>
+  <h4>Upcoming Matches</h4>
+  <p>Book tickets for upcoming matches through the match list below</p>
+</div>
+
+  <div class="container">
+    <!-- Match Card 1 -->
+    <div class="card">
+      <div class="card-header">
+        <span>📅 8 April 2025</span>
+        <span>⏰ 7:30 PM IST</span>
+      </div>
+      <div class="match-info">
+        <div class="teams">
+          <div>
+            <img src="https://upload.wikimedia.org/wikipedia/en/d/d4/Punjab_Kings_Logo.svg" alt="PBKS">
+            <div>Punjab Kings</div>
+          </div>
+          <div>VS</div>
+          <div>
+            <img src="img/chenai super.png" alt="CSK">
+            <div>Chennai Super </div>
+          </div>
+        </div>
+        <div class="location">📍 Mullanpur Stadium, New Chandigarh, Punjab</div>
+        <div class="badges">
+          <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+          <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+        </div>
+        <button class="book-btn" onclick="bookMatch(
+          '8 April 2025',
+          '7:30 PM IST',
+          'Punjab Kings',
+          'Chennai Super',
+          'Mullanpur Stadium, New Chandigarh, Punjab',
+          'img/Punjab Kings.webp',
+          'img/chenai super.png'
+        )">
+          Book Tickets
+        </button>
+      </div>
+    </div>
+
+    <!-- Match Card 2 -->
+    <div class="card">
+      <div class="card-header">
+        <span>📅 9 April 2025</span>
+        <span>⏰ 7:30 PM IST</span>
+      </div>
+      <div class="match-info">
+        <div class="teams">
+          <div>
+            <img src="https://upload.wikimedia.org/wikipedia/en/0/09/Gujarat_Titans_Logo.svg" alt="GT">
+            <div>Gujarat Titans</div>
+          </div>
+          <div>VS</div>
+          <div>
+            <img src="img/rajasthan royals.png" alt="RR">
+            <div>Rajasthan Royals</div>
+          </div>
+        </div>
+        <div class="location">📍 Narendra Modi Stadium Ahmedabad, gujrat</div>
+        <div class="badges">
+          <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+          <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+        </div>
+        <button class="book-btn" onclick="bookMatch(
+          '9 April 2025',
+          '7:30 PM IST',
+          'Gujarat Titans',
+          'Rajasthan Royals',
+          'Narendra Modi Stadium Ahmedabad, gujrat',
+          'img/gujrat tians.png',
+          'img/rajasthan royals.png'
+        )">
+          Book Tickets
+        </button>
+      </div>
+    </div>
+
+    <!-- match card 3 -->
+    <div class="card">
+        <div class="card-header">
+          <span>📅 10 April 2025</span>
+          <span>⏰ 7:30 PM IST</span>
+        </div>
+        <div class="match-info">
+          <div class="teams">
+            <div>
+              <img src="img/royal challengers.jpg" alt="PBKS">
+              <div>Royal Challengers</div>
+            </div>
+            <div>VS</div>
+            <div>
+              <img src="img/Delhi Capitals.webp" alt="CSK">
+              <div>Delhi Capitals</div>
+            </div>
+          </div>
+          <div class="location">📍 M. Chinnaswamy Stadium, Bengaluru, Karnataka</div>
+          <div class="badges">
+            <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+            <div class="badge orange blinking">🔥 Only a Few Left!</div>
+  
+          </div>
+          <button class="book-btn" onclick="bookMatch(
+  '10 April 2025',
+  '7:30 PM IST',
+  'Royal Challengers',
+  'Delhi Capitals',
+  ' M. Chinnaswamy Stadium, Bengaluru, Karnataka',
+  'img/royal challengers.jpg',
+  'img/Delhi Capitals.webp'
+)">
+  Book Tickets
+</button>
+        </div>
+      </div>
+    
+ <!-- Match Card 4 -->
+ <div class="card">
+    <div class="card-header">
+      <span>📅 11 April 2025</span>
+      <span>⏰ 7:30 PM IST</span>
+    </div>
+    <div class="match-info">
+      <div class="teams">
+        <div>
+          <img src="img/chenai super.png" alt="PBKS">
+          <div>Chennai Super Kings</div>
+        </div>
+        <div>VS</div>
+        <div>
+          <img src="img/Kolkata Knight Riders.png" alt="CSK">
+          <div> Kolkata Knight Riders</div>
+        </div>
+      </div>
+      <div class="location">📍M. A. Chidambaram Stadium, Chennai, Tamil Nadu</div>
+      <div class="badges">
+        <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+        <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+      </div>
+      <button class="book-btn" onclick="bookMatch(
+          '11 April 2025',
+          '7:30 PM IST',
+          'Chennai Super Kings',
+          'Kolkata Knight Riders',
+          'M. A. Chidambaram Stadium, Chennai, Tamil Nadu',
+          'img/chenai super.png',
+          'img/Kolkata Knight Riders.png'
+        )">
+          Book Tickets
+        </button>
+    </div>
+  </div>
+
+<!--yeha view more button add karna hoga-->
+<!-- Match Card 5 -->
+<div class="card">
+    <div class="card-header">
+      <span>📅 12 April 2025</span>
+      <span>⏰ 3:30 PM IST</span>
+    </div>
+    <div class="match-info">
+      <div class="teams">
+        <div>
+          <img src="img/Lucknow Super.svg" alt="PBKS">
+          <div>Lucknow Super</div>
+        </div>
+        <div>VS</div>
+        <div>
+          <img src="img/gujrat tians.png" alt="CSK">
+          <div> Gujarat Titans</div>
+        </div>
+      </div>
+      <div class="location">📍BRSABV Ekana Cricket Stadium, Lucknow</div>
+      <div class="badges">
+        <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+        <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+      </div>
+      <button class="book-btn" onclick="bookMatch(
+        '12 April 2025',
+        '3:30 PM IST',
+        'Lucknow Super',
+        'Gujarat Titans',
+        'M. A. Chidambaram Stadium, Chennai, Tamil Nadu',
+        'img/Lucknow Super.svg',
+        'img/gujrat tians.png'
+      )">
+        Book Tickets
+      </button>
+    </div>
+  </div>
+
+<!-- Match Card 6 -->
+<div class="card">
+    <div class="card-header">
+      <span>📅 12 April 2025</span>
+      <span>⏰ 7:30 PM IST</span>
+    </div>
+    <div class="match-info">
+      <div class="teams">
+        <div>
+          <img src="img/Sunrisers Hyderabad.png" alt="PBKS">
+          <div>Sunrisers Hyderabad</div>
+        </div>
+        <div>VS</div>
+        <div>
+          <img src="img/Punjab Kings.webp" alt="CSK">
+          <div> Punjab Kings</div>
+        </div>
+      </div>
+      <div class="location">📍Rajiv Gandhi International Cricket Stadium, Hyderabad</div>
+      <div class="badges">
+        <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+        <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+      </div>
+      <button class="book-btn" onclick="bookMatch(
+        '12 April 2025',
+        '7:30 PM IST',
+        'Sunrisers Hyderabad',
+        'Punjab Kings',
+        'Rajiv Gandhi International Cricket Stadium, Hyderabad',
+        'img/Sunrisers Hyderabad.png',
+        'img/Punjab Kings.webp'
+      )">
+        Book Tickets
+      </button>
+    </div>
+  </div>
+
+<!-- Match Card 7 -->
+<div class="card">
+    <div class="card-header">
+      <span>📅 13 April 2025</span>
+      <span>⏰ 3:30 PM IST</span>
+    </div>
+    <div class="match-info">
+      <div class="teams">
+        <div>
+          <img src="img/rajasthan royals.png" alt="PBKS">
+          <div>Rajasthan Royals</div>
+        </div>
+        <div>VS</div>
+        <div>
+          <img src="img/royal challengers.jpg" alt="CSK">
+          <div> Royal CH. Bengaluru</div>
+        </div>
+      </div>
+      <div class="location">📍Sawai Mansingh Stadium, Jaipur</div>
+      <div class="badges">
+        <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+        <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+      </div>
+      <button class="book-btn" onclick="bookMatch(
+        '13 April 2025',
+        '3:30 PM IST',
+        'Rajasthan Royals',
+        'Royal CH. Bengaluru',
+        'Sawai Mansingh Stadium, Jaipur',
+        'img/rajasthan royals.png',
+        'img/royal challengers.jpg'
+      )">
+        Book Tickets
+      </button>
+    </div>
+  </div>
+
+<!-- Match Card 8 -->
+<div class="card">
+    <div class="card-header">
+      <span>📅 13 April 2025</span>
+      <span>⏰ 7:30 PM IST</span>
+    </div>
+    <div class="match-info">
+      <div class="teams">
+        <div>
+          <img src="img/Delhi Capitals.webp" alt="PBKS">
+          <div>Delhi Capitals</div>
+        </div>
+        <div>VS</div>
+        <div>
+          <img src="img/mumbai indian.jpg" alt="CSK">
+          <div> Mumbai Indians</div>
+        </div>
+      </div>
+      <div class="location">📍Arun Jaitley Stadium, Delhi</div>
+      <div class="badges">
+        <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+        <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+      </div>
+      <button class="book-btn" onclick="bookMatch(
+        '13 April 2025',
+        '7:30 PM IST',
+        'Delhi Capitals',
+        'Mumbai Indians',
+        'Arun Jaitley Stadium, Delhi',
+        'img/Delhi Capitals.webp',
+        'img/mumbai indian.jpg'
+      )">
+        Book Tickets
+      </button>
+    </div>
+  </div>
+
+<!-- Match Card 9 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 14 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Lucknow Super.svg" alt="PBKS">
+        <div>Lucknow Super Giants</div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/chenai super.png" alt="CSK">
+        <div> Chennai Super Kings</div>
+      </div>
+    </div>
+    <div class="location">📍BRSABV Ekana Cricket Stadium, Lucknow</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+        '14 April 2025',
+        '7:30 PM IST',
+        'Lucknow Super Giants',
+        'Chennai Super Kings',
+        'BRSABV Ekana Cricket Stadium, Lucknow',
+        'img/Lucknow Super.svg',
+        'img/chenai super.png'
+      )">
+        Book Tickets
+      </button>
+  </div>
+</div>
+
+<!-- Match Card 10 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 15 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Punjab Kings.webp" alt="PBKS">
+        <div>Punjab Kings</div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Kolkata Knight Riders.png" alt="CSK">
+        <div> Kolkata Knight Riders</div>
+      </div>
+    </div>
+    <div class="location">📍MCA Stadium, New Chandigarh</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '15 April 2025',
+      '7:30 PM IST',
+      'Punjab Kings',
+      'Kolkata Knight Riders',
+      'MCA Stadium, New Chandigarh',
+      'img/Punjab Kings.webp',
+      'img/Kolkata Knight Riders.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 11 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 16 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Delhi Capitals.webp" alt="PBKS">
+        <div>Delhi Capitals</div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/rajasthan royals.png" alt="CSK">
+        <div> Rajasthan Royals</div>
+      </div>
+    </div>
+    <div class="location">📍Arun Jaitley Stadium, Delhi</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '16 April 2025',
+      '7:30 PM IST',
+      'Delhi Capitals',
+      'Rajasthan Royals',
+      'Arun Jaitley Stadium, Delhi',
+      'img/Delhi Capitals.webp',
+      'img/rajasthan royals.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 12 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 17 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/mumbai indian.jpg" alt="PBKS">
+        <div>Mumbai Indians</div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Sunrisers Hyderabad.png" alt="CSK">
+        <div> Sunrisers Hyderabad</div>
+      </div>
+    </div>
+    <div class="location">📍Wankhede Stadium, Mumbai</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '17 April 2025',
+      '7:30 PM IST',
+      'Mumbai Indians',
+      'Sunrisers Hyderabad',
+      'Wankhede Stadium, Mumbai',
+      'img/mumbai indian.jpg',
+      'img/Sunrisers Hyderabad.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 13 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 18 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/royal challengers.jpg" alt="PBKS">
+        <div>Royal Challengers</div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Punjab Kings.webp" alt="CSK">
+        <div> Punjab Kings</div>
+      </div>
+    </div>
+    <div class="location">📍M. Chinnaswamy Stadium, Bengaluru</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '18 April 2025',
+      '7:30 PM IST',
+      'Royal Challengers',
+      'Punjab Kings',
+      'M. Chinnaswamy Stadium, Bengaluru',
+      'img/royal challengers.jpg',
+      'img/Punjab Kings.webp'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 14 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 19 April 2025</span>
+    <span>⏰ 3:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/gujrat tians.png" alt="PBKS">
+        <div>Gujarat Titans</div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Delhi Capitals.webp" alt="CSK">
+        <div> Delhi Capitals
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Narendra Modi Stadium, Ahmedabad</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '19 April 2025',
+      '3:30 PM IST',
+      'Gujarat Titans',
+      'Delhi Capitals',
+      'Narendra Modi Stadium, Ahmedabad',
+      'img/Gujarat Titans',
+      'img/Delhi Capitals.webp'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 15 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 19 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/rajasthan royals.png" alt="PBKS">
+        <div>Rajasthan Royals</div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Lucknow Super.svg" alt="CSK">
+        <div> Lucknow Super Giants
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Sawai Mansingh Stadium, Jaipur</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '19 April 2025',
+      '7:30 PM IST',
+      'Rajasthan Royals',
+      'Lucknow Super Giants',
+      'Sawai Mansingh Stadium, Jaipur',
+      'img/rajasthan royals.png',
+      'img/Lucknow Super.svg'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 16 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 20 April 2025</span>
+    <span>⏰ 3:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Punjab Kings.webp" alt="PBKS">
+        <div> Punjab Kings</div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/royal challengers.jpg" alt="CSK">
+        <div> Royal Challengers
+        </div>
+      </div>
+    </div>
+    <div class="location">📍MCA Stadium, New Chandigarh</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '20 April 2025',
+      '3:30 PM IST',
+      'Punjab Kings',
+      'Royal Challengers',
+      'MCA Stadium, New Chandigarh',
+      'img/Punjab Kings.webp',
+      'img/royal challengers.jpg'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 17 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 20 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/mumbai indian.jpg" alt="PBKS">
+        <div> Mumbai Indians</div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/chenai super.png" alt="CSK">
+        <div> Chennai Super Kings
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Wankhede Stadium, Mumbai</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '20 April 2025',
+      '7:30 PM IST',
+      ' Mumbai Indians',
+      'Chennai Super Kings',
+      'Wankhede Stadium, Mumbai',
+      'img/mumbai indian.jpg',
+      'img/chenai super.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 18 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 21 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Kolkata Knight Riders.png" alt="PBKS">
+        <div> Kolkata Knight RD</div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/gujrat tians.png" alt="CSK">
+        <div> Gujarat Titans
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Eden Gardens, Kolkata</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '21 April 2025',
+      '7:30 PM IST',
+      'Kolkata Knight RD',
+      'Gujarat Titans',
+      'Eden Gardens, Kolkata',
+      'img/Kolkata Knight Riders.png',
+      'img/gujrat tians.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 19 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 22 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Lucknow Super.svg" alt="PBKS">
+        <div> Lucknow Super GT</div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Delhi Capitals.webp" alt="CSK">
+        <div> Delhi Capitals
+        </div>
+      </div>
+    </div>
+    <div class="location">📍BRSABV Ekana Cricket Stadium, Lucknow</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '22 April 2025',
+      '7:30 PM IST',
+      'Lucknow Super GT',
+      'Delhi Capitals',
+      'BRSABV Ekana Cricket Stadium, Lucknow',
+      'img/Lucknow Super.svg',
+      'img/Delhi Capitals.webp'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 20 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 23 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Sunrisers Hyderabad.png" alt="PBKS">
+        <div> Sunrisers Hyderabad</div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/mumbai indian.jpg" alt="CSK">
+        <div> Mumbai Indians
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Rajiv Gandhi International Cricket Stadium, Hyderabad</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '23 April 2025',
+      '7:30 PM IST',
+      'Sunrisers Hyderabad',
+      'Mumbai Indians',
+      'Rajiv Gandhi International Cricket Stadium, Hyderabad',
+      'img/Sunrisers Hyderabad.png',
+      'img/mumbai indian.jpg'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 21 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 24 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/royal challengers.jpg" alt="PBKS">
+        <div> Royal Challengers </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/rajasthan royals.png" alt="CSK">
+        <div> Rajasthan Royals
+        </div>
+      </div>
+    </div>
+    <div class="location">📍M. Chinnaswamy Stadium, Bengaluru</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '24 April 2025',
+      '7:30 PM IST',
+      'Royal Challengers',
+      'Rajasthan Royals',
+      'M. Chinnaswamy Stadium, Bengaluru',
+      'img/royal challengers.jpg',
+      'img/rajasthan royals.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 22 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 25 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/chenai super.png" alt="PBKS">
+        <div> Chennai Super Kings </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Sunrisers Hyderabad.png" alt="CSK">
+        <div> Sunrisers Hyderabad
+        </div>
+      </div>
+    </div>
+    <div class="location">📍MA Chidambaram Stadium, Chennai </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '25 April 2025',
+      '7:30 PM IST',
+      'Chennai Super Kings',
+      'Sunrisers Hyderabad',
+      'MA Chidambaram Stadium, Chennai',
+      'img/chenai super.png',
+      'img/Sunrisers Hyderabad.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 23 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 26 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Kolkata Knight Riders.png" alt="PBKS">
+        <div> Kolkata NT Riders </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Punjab Kings.webp" alt="CSK">
+        <div> Punjab Kings
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Eden Gardens, Kolkata </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '26 April 2025',
+      '7:30 PM IST',
+      'Kolkata NT Riders',
+      'Punjab Kings',
+      'Eden Gardens, Kolkata',
+      'img/Kolkata Knight Riders.png',
+      'img/Punjab Kings.webp'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 24 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 27 April 2025</span>
+    <span>⏰ 3:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/mumbai indian.jpg" alt="PBKS">
+        <div> Mumbai Indians </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Lucknow Super.svg" alt="CSK">
+        <div> Lucknow Super GT
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Wankhede Stadium, Mumbai </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '27 April 2025',
+      '3:30 PM IST',
+      'Mumbai Indians',
+      'Lucknow Super GT',
+      'Wankhede Stadium, Mumbai',
+      'img/mumbai indian.jpg',
+      'img/Lucknow Super.svg'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 25 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 27 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Delhi Capitals.webp" alt="PBKS">
+        <div> Delhi Capitals </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/royal challengers.jpg" alt="CSK">
+        <div> Royal Challengers
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Arun Jaitley Stadium, Delhi </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '27 April 2025',
+      '7:30 PM IST',
+      'Delhi Capitals',
+      'Royal Challengers',
+      'Arun Jaitley Stadium, Delhi ',
+      'img/Delhi Capitals.webp',
+      'img/royal challengers.jpg'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 26 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 28 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/rajasthan royals.png" alt="PBKS">
+        <div> Rajasthan Royals </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/gujrat tians.png" alt="CSK">
+        <div> Gujarat Titans
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Sawai Mansingh Stadium, Jaipur, Rajasthan, India </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '28 April 2025',
+      '7:30 PM IST',
+      'Rajasthan Royals',
+      'Gujarat Titans',
+      'Sawai Mansingh Stadium, Jaipur, Rajasthan, India',
+      'img/rajasthan royals.png',
+      'img/gujrat tians.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 27 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 29 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Delhi Capitals.webp" alt="PBKS">
+        <div> Delhi Capitals </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Kolkata Knight Riders.png" alt="CSK">
+        <div> Kolkata NT Riders
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Arun Jaitley Stadium, Delhi, India </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '29 April 2025',
+      '7:30 PM IST',
+      'Delhi Capitals ',
+      'Kolkata NT Riders',
+      'Arun Jaitley Stadium, Delhi, India',
+      'img/Delhi Capitals.webp',
+      'img/Kolkata Knight Riders.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 28 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 30 April 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/chenai super.png" alt="PBKS">
+        <div> Chennai Super </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Punjab Kings.webp" alt="CSK">
+        <div> Punjab Kings
+        </div>
+      </div>
+    </div>
+    <div class="location">📍MA Chidambaram Stadium, Chennai, Tamil Nadu, India </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '30 April 2025',
+      '7:30 PM IST',
+      'Chennai Super ',
+      'Punjab Kings',
+      'MA Chidambaram Stadium, Chennai, Tamil Nadu, India ',
+      'img/chenai super.png',
+      'img/Punjab Kings.webp'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 29 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 1 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/rajasthan royals.png" alt="PBKS">
+        <div> Rajasthan Royals </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/mumbai indian.jpg" alt="CSK">
+        <div> Mumbai Indians
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Sawai Mansingh Stadium, Jaipur, Rajasthan, India </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '1 May 2025',
+      '7:30 PM IST',
+      'Rajasthan Royals',
+      'Mumbai Indians',
+      'Sawai Mansingh Stadium, Jaipur, Rajasthan, India ',
+      'img/rajasthan royals.png',
+      'img/mumbai indian.jpg'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 30 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 2 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/gujrat tians.png" alt="PBKS">
+        <div> Gujarat Titans </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Sunrisers Hyderabad.png" alt="CSK">
+        <div> Sunrisers Hyderabad
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Narendra Modi Stadium, Ahmedabad, Gujarat, India </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '2 May 2025',
+      '7:30 PM IST',
+      'Gujarat Titans',
+      'Sunrisers Hyderabad',
+      'Narendra Modi Stadium, Ahmedabad, Gujarat, India ',
+      'img/gujrat tians.png',
+      'img/Sunrisers Hyderabad.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 31 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 3 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/royal challengers.jpg" alt="PBKS">
+        <div> Royal Challengers </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/chenai super.png" alt="CSK">
+        <div> Chennai Super Kings
+        </div>
+      </div>
+    </div>
+    <div class="location">📍M. Chinnaswamy Stadium, Bengaluru, Karnataka, India </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '3 May 2025',
+      '7:30 PM IST',
+      'Royal Challengers',
+      'Chennai Super Kings',
+      'M. Chinnaswamy Stadium, Bengaluru, Karnataka, India ',
+      'img/royal challengers.jpg',
+      'img/chenai super.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 32 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 4 May 2025</span>
+    <span>⏰ 3:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Kolkata Knight Riders.png" alt="PBKS">
+        <div> Kolkata Knight RD </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/rajasthan royals.png" alt="CSK">
+        <div> Rajasthan Royals
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Eden Gardens, Kolkata, West Bengal, India </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '4 May 2025',
+      '3:30 PM IST',
+      'Kolkata Knight RD',
+      'Rajasthan Royals',
+      'Eden Gardens, Kolkata, West Bengal, India ',
+      'img/Kolkata Knight Riders.png',
+      'img/rajasthan royals.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 33 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 4 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Punjab Kings.webp" alt="PBKS">
+        <div> Punjab Kings </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Lucknow Super.svg" alt="CSK">
+        <div> Lucknow Super GT
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Himachal Pradesh Cricket Association Stadium, Dharamsala, Himachal Pradesh, India</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '4 May 2025',
+      '7:30 PM IST',
+      'Punjab Kings',
+      'Lucknow Super GT',
+      'Himachal Pradesh Cricket Association Stadium ',
+      'img/Punjab Kings.webp',
+      'img/Lucknow Super.svg'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 34 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 5 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Sunrisers Hyderabad.png" alt="PBKS">
+        <div> Sunrisers Hyderabad </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Delhi Capitals.webp" alt="CSK">
+        <div> Delhi Capitals
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Rajiv Gandhi International Cricket Stadium, Hyderabad, Telangana, India</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '5 May 2025',
+      '7:30 PM IST',
+      'Sunrisers Hyderabad',
+      'Delhi Capitals',
+      'Rajiv Gandhi International Cricket Stadium, Hyderabad, Telangana, India',
+      'img/Sunrisers Hyderabad.png',
+      'img/Delhi Capitals.webp'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 35 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 6 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/mumbai indian.jpg" alt="PBKS">
+        <div> Mumbai Indians </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/gujrat tians.png" alt="CSK">
+        <div> Gujarat Titans
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Wankhede Stadium, Mumbai, Maharashtra, India </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '6 May 2025',
+      '7:30 PM IST',
+      'Mumbai Indians',
+      'Gujarat Titans',
+      'Wankhede Stadium, Mumbai, Maharashtra, India ',
+      'img/mumbai indian.jpg',
+      'img/gujrat tians.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 36 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 7 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Kolkata Knight Riders.png" alt="PBKS">
+        <div> Kolkata Knight Riders </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/chenai super.png" alt="CSK">
+        <div> Chennai Super Kings
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Eden Gardens, Kolkata, West Bengal, India </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '7 May 2025',
+      '7:30 PM IST',
+      'Kolkata Knight Riders',
+      'Chennai Super Kings',
+      'Eden Gardens, Kolkata, West Bengal, India',
+      'img/Kolkata Knight Riders.png',
+      'img/chenai super.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 37 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 8 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Punjab Kings.webp" alt="PBKS">
+        <div> Punjab Kings </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Delhi Capitals.webp" alt="CSK">
+        <div> Delhi Capitals
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Himachal Pradesh Cricket Association Stadium, Dharamsala, Himachal Pradesh, India </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '8 May 2025',
+      '7:30 PM IST',
+      'Punjab Kings',
+      'Delhi Capitals',
+      'Himachal Pradesh Cricket Association Stadium',
+      'img/Punjab Kings.webp',
+      'img/Delhi Capitals.webp'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 38 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 9 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Lucknow Super.svg" alt="PBKS">
+        <div> Lucknow Super GT</div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/royal challengers.jpg" alt="CSK">
+        <div> Royal Challengers 
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow, Uttar Pradesh, India </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '9 May 2025',
+      '7:30 PM IST',
+      'Lucknow Super GT',
+      'Royal Challengers',
+      'Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow, Uttar Pradesh, India ',
+      'img/Lucknow Super.svg',
+      'img/royal challengers.jpg'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 39 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 10 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Sunrisers Hyderabad.png" alt="PBKS">
+        <div> Sunrisers Hyderabad </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Kolkata Knight Riders.png" alt="CSK">
+        <div> Kolkata Knight Riders 
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Rajiv Gandhi International Cricket Stadium, Hyderabad, Telangana, India </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '10 May 2025',
+      '7:30 PM IST',
+      'Sunrisers Hyderabad',
+      'Kolkata Knight Riders ',
+      'Rajiv Gandhi International Cricket Stadium, Hyderabad, Telangana, India ',
+      'img/Sunrisers Hyderabad.png',
+      'img/Kolkata Knight Riders.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 40 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 11 May 2025</span>
+    <span>⏰ 3:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Punjab Kings.webp" alt="PBKS">
+        <div> Punjab Kings </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/mumbai indian.jpg" alt="CSK">
+        <div> Mumbai Indians
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Himachal Pradesh Cricket Association Stadium, Dharamsala </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '11 May 2025',
+      '3:30 PM IST',
+      'Punjab Kings',
+      'Mumbai Indians ',
+      'Himachal Pradesh Cricket Association Stadium, Dharamsala ',
+      'img/Punjab Kings.webp',
+      'img/mumbai indian.jpg'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 41 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 11 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Delhi Capitals.webp" alt="PBKS">
+        <div> Delhi Capitals </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/gujrat tians.png" alt="CSK">
+        <div> Gujarat Titans
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Arun Jaitley Stadium, Delhi </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '11 May 2025',
+      '7:30 PM IST',
+      'Delhi Capitals',
+      'Gujarat Titans ',
+      'Arun Jaitley Stadium, Delhi ',
+      'img/Delhi Capitals.webp',
+      'img/gujrat tians.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 42 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 12 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/chenai super.png" alt="PBKS">
+        <div> Chennai Super Kings </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/rajasthan royals.png" alt="CSK">
+        <div> Rajasthan Royals
+        </div>
+      </div>
+    </div>
+    <div class="location">📍MA Chidambaram Stadium, Chennai</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '12 May 2025',
+      '7:30 PM IST',
+      'Chennai Super Kings',
+      'Rajasthan Royals ',
+      'MA Chidambaram Stadium, Chennai ',
+      'img/chenai super.png',
+      'img/rajasthan royals.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 43 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 13 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/royal challengers.jpg" alt="PBKS">
+        <div> Royal Challengers  </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Sunrisers Hyderabad.png" alt="CSK">
+        <div> Sunrisers Hyderabad
+        </div>
+      </div>
+    </div>
+    <div class="location">📍M. Chinnaswamy Stadium, Bengaluru</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '13 May 2025',
+      '7:30 PM IST',
+      'Royal Challengers ',
+      'Sunrisers Hyderabad',
+      'M. Chinnaswamy Stadium, Bengaluru',
+      'img/royal challengers.jpg',
+      'img/Sunrisers Hyderabad.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 44 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 14 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/gujrat tians.png" alt="PBKS">
+        <div> Gujarat Titans  </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Lucknow Super.svg" alt="CSK">
+        <div> Lucknow Super GT
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Narendra Modi Stadium, Ahmedabad </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '14 May 2025',
+      '7:30 PM IST',
+      'Gujarat Titans',
+      'Lucknow Super GT',
+      'Narendra Modi Stadium, Ahmedabad',
+      'img/gujrat tians.png',
+      'img/Lucknow Super.svg'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 45 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 15 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/mumbai indian.jpg" alt="PBKS">
+        <div> Mumbai Indians  </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Delhi Capitals.webp" alt="CSK">
+        <div> Delhi Capitals
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Wankhede Stadium, Mumbai </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '15 May 2025',
+      '7:30 PM IST',
+      'Mumbai Indians',
+      'Delhi Capitals',
+      'Wankhede Stadium, Mumbai ',
+      'img/mumbai indian.jpg',
+      'img/Delhi Capitals.webp'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 46 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 16 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/rajasthan royals.png" alt="PBKS">
+        <div> Rajasthan Royals  </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Punjab Kings.webp" alt="CSK">
+        <div> Punjab Kings
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Sawai Mansingh Stadium, Jaipur </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '16 May 2025',
+      '7:30 PM IST',
+      'Rajasthan Royals',
+      'Punjab Kings',
+      'Sawai Mansingh Stadium, Jaipur ',
+      'img/rajasthan royals.png',
+      'img/Punjab Kings.webp'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 47 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 17 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/royal challengers.jpg" alt="PBKS">
+        <div> Royal Challengers  </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Kolkata Knight Riders.png" alt="CSK">
+        <div> Kolkata Knight RD
+        </div>
+      </div>
+    </div>
+    <div class="location">📍M. Chinnaswamy Stadium, Bengaluru </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '17 May 2025',
+      '7:30 PM IST',
+      'Royal Challengers',
+      'Kolkata Knight RD',
+      'M. Chinnaswamy Stadium, Bengaluru ',
+      'img/royal challengers.jpg',
+      'img/Kolkata Knight Riders.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 48 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 18 May 2025</span>
+    <span>⏰ 3:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/gujrat tians.png" alt="PBKS">
+        <div> Gujarat Titans  </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/chenai super.png" alt="CSK">
+        <div> Chennai Super
+        </div>
+      </div>
+    </div>
+    <div class="location">📍Narendra Modi Stadium, Ahmedabad </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '18 May 2025',
+      '3:30 PM IST',
+      'Gujarat Titans',
+      'Chennai Super',
+      'Narendra Modi Stadium, Ahmedabad',
+      'img/gujrat tians.png',
+      'img/chenai super.png'
+    )">
+      Book Tickets
+    </button>
+  </div>
+</div>
+
+<!-- Match Card 49 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 18 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/Lucknow Super.svg" alt="PBKS">
+        <div> Lucknow Super Giants  </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/Sunrisers Hyderabad.png" alt="CSK">
+        <div> Sunrisers Hyderabad
+        </div>
+      </div>
+    </div>
+    <div class="location">📍BRSABV Ekana Cricket Stadium, Lucknow </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '18 May 2025',
+      '7:30 PM IST',
+      'Lucknow Super Giants ',
+      'Sunrisers Hyderabad',
+      'BRSABV Ekana Cricket Stadium, Lucknow ',
+      'img/Lucknow Super.svg',
+      'img/Sunrisers Hyderabad.png'
+    )">
+      Book Tickets
+    </button>
+    
+  </div>
+</div>
+
+<!-- Match Card 50 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 20 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/" alt="NO IMAGE">
+        <div> TBD  </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/" alt="NO IMG">
+        <div> TBD
+        </div>
+      </div>
+    </div>
+    <div class="location"> 📍Rajiv Gandhi International Cricket Stadium, Hyderabad, Telangana, India- Qualifier 1</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '18 May 2025',
+      '7:30 PM IST',
+      'Lucknow Super Giants ',
+      'Sunrisers Hyderabad',
+      'BRSABV Ekana Cricket Stadium, Lucknow ',
+      'img/Lucknow Super.svg',
+      'img/Sunrisers Hyderabad.png'
+    )">
+      Book Tickets
+    </button>
+    
+  </div>
+</div>
+
+<!-- Match Card 51 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 21 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/" alt="NO IMAGE">
+        <div> TBD  </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/" alt="NO IMG">
+        <div> TBD
+        </div>
+      </div>
+    </div>
+    <div class="location"> 📍Rajiv Gandhi International Cricket Stadium, Hyderabad, Telangana, India- Eliminator</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '18 May 2025',
+      '7:30 PM IST',
+      'Lucknow Super Giants ',
+      'Sunrisers Hyderabad',
+      'BRSABV Ekana Cricket Stadium, Lucknow ',
+      'img/Lucknow Super.svg',
+      'img/Sunrisers Hyderabad.png'
+    )">
+      Book Tickets
+    </button>
+    
+  </div>
+</div>
+
+<!-- Match Card 53 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 23 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/" alt="NO IMAGE">
+        <div> TBD  </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/" alt="NO IMG">
+        <div> TBD
+        </div>
+      </div>
+    </div>
+    <div class="location"> 📍Eden Gardens, Kolkata, West Bengal, India- Qualifier 2</div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '18 May 2025',
+      '7:30 PM IST',
+      'Lucknow Super Giants ',
+      'Sunrisers Hyderabad',
+      'BRSABV Ekana Cricket Stadium, Lucknow ',
+      'img/Lucknow Super.svg',
+      'img/Sunrisers Hyderabad.png'
+    )">
+      Book Tickets
+    </button>
+    
+  </div>
+</div>
+
+<!-- Match Card 52 -->
+<div class="card">
+  <div class="card-header">
+    <span>📅 25 May 2025</span>
+    <span>⏰ 7:30 PM IST</span>
+  </div>
+  <div class="match-info">
+    <div class="teams">
+      <div>
+        <img src="img/" alt="NO IMAGE">
+        <div> TBD  </div>
+      </div>
+      <div>VS</div>
+      <div>
+        <img src="img/" alt="NO IMG">
+        <div> TBD
+        </div>
+      </div>
+    </div>
+    <div class="location"> 📍Eden Gardens, Kolkata, West Bengal, India- FINAL </div>
+    <div class="badges">
+      <div class="badge green">🚀 Hurry! Seats Selling Out</div>
+      <div class="badge orange blinking">🔥 Only a Few Left!</div>
+
+    </div>
+    <button class="book-btn" onclick="bookMatch(
+      '18 May 2025',
+      '7:30 PM IST',
+      'Lucknow Super Giants ',
+      'Sunrisers Hyderabad',
+      'BRSABV Ekana Cricket Stadium, Lucknow ',
+      'img/Lucknow Super.svg',
+      'img/Sunrisers Hyderabad.png'
+    )">
+      Book Tickets
+    </button>
+    
+  </div>
+</div>
+
+  </div>
+    <!--sabse niche bala part start here-->
+    <div class="footer-image">
+  <img src="img/bottom.png" alt="Bottom Image">
+</div>
+
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slide");
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle("active", i === index);
+  });
+}
+
+function nextSlide() {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}
+
+setInterval(nextSlide, 3000);
+
+
+function bookMatch(date, time, team1, team2, location, logo1, logo2) {
+    const matchData = {
+      date,
+      time,
+      team1,
+      team2,
+      location,
+      logo1,
+      logo2
+    };
+
+    localStorage.setItem("selectedMatch", JSON.stringify(matchData));
+    window.location.href = "select_ticket.html";
+  }
+
+</script>
+</body>
+</html>
